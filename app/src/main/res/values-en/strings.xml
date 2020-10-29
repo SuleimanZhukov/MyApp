@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Amman">Amman</string>
-    <string name="Monday">Monday</string>
-    <string name="Sunny">Sunny</string>
+
+    <!--  for activity_main  -->
+    <string name="app_name">MyApp</string>
+    <string name="city_name">Alexandria</string>
+    <string name="date">Monday, 26th october</string>
+    <string name="weather">Sunny</string>
+
+    <!--  cities for menu  -->
+    <string name="amman">Amman</string>
+    <string name="moscow">Moscow</string>
+    <string name="perth">Perth</string>
+    <string name="budapest">Budapest</string>
+    <string name="damascus">Damascus</string>
+    <string name="alexandria">Alexandria</string>
+    <string name="rome">Rome</string>
+    <string name="istanbul">Istanbul</string>
+    <string name="madrid">Madrid</string>
+    <string name="shanghai">Shanghai</string>
+    <string name="richmond">Richmond</string>
+
+    <!--  activity_settings  -->
+    <string name="theme">Dark Theme</string>
+    <string name="temperature_unit">Temperature Unit in °F</string>
+    <string name="notification">Notification Bar</string>
+    <string name="more_info">Show more info</string>
+
 </resources>
