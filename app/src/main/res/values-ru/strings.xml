@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  for activity_main  -->
+    <string name="app_name">Мое Приложение</string>
+    <string name="city_name">Александрия</string>
+    <string name="date">Понедельник, 26 октября</string>
+    <string name="weather">Солнечно</string>
+
+    <!--  cities for menu  -->
+    <string name="amman">Амман</string>
+    <string name="moscow">Москва</string>
+    <string name="perth">Перт</string>
+    <string name="budapest">Будапешт</string>
+    <string name="damascus">Дамаск</string>
+    <string name="alexandria">Александрия</string>
+    <string name="rome">Рим</string>
+    <string name="istanbul">Станбул</string>
+    <string name="madrid">Мадрид</string>
+    <string name="shanghai">Шанхай</string>
+    <string name="richmond">Ричмонд</string>
+
+    <!--  activity_settings  -->
+    <string name="theme">Темная Тема</string>
+    <string name="temperature_unit">Единица Измерения Температуры в °F</string>
+    <string name="notification">Уведомления</string>
+    <string name="more_info">Показать больше информации</string>
+
+</resources>

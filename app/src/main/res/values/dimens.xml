@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  activity_main  -->
+    <dimen name="activity_main_small">20sp</dimen>
+    <dimen name="activity_main_big">80sp</dimen>
+
+    <!--  activity_menu  -->
+    <dimen name="search_bar_width">350dp</dimen>
+    <dimen name="search_bar_height">60dp</dimen>
+    <dimen name="button_width">370dp</dimen>
+    <dimen name="button_height">80dp</dimen>
+
+    <!--  activity_settings  -->
+    <dimen name="switch_width">300dp</dimen>
+
+</resources>
