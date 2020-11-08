@@ -1,8 +1,8 @@
 package com.example.myapp;
 
-public class MainPresenter {
+public class Model {
 
-    private static MainPresenter instance;
+    private static Model instance;
     private static Object object = new Object();
 
     private String weather;
@@ -24,14 +24,14 @@ public class MainPresenter {
         return degree;
     }
 
-    private MainPresenter() {
+    private Model() {
 
     }
 
-    public static MainPresenter getInstance() {
+    public static Model getInstance() {
         synchronized (object) {
             if (instance == null) {
-                instance = new MainPresenter();
+                instance = new Model();
             }
             return instance;
         }

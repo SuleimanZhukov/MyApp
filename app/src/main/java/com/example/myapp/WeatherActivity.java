@@ -1,6 +1,7 @@
 package com.example.myapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,24 +14,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WeatherActivity extends AppCompatActivity {
 
+    private TextView city;
     private TextView degree;
     private TextView weather;
     private ImageView settings;
 
-    private MainPresenter mainPresenter;
+    String urlCity = "https://en.wikipedia.org/wiki/Amman";
+    String urlDegree = "https://yandex.ru/pogoda/";
+
+    private Model model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainPresenter = MainPresenter.getInstance();
+        model = Model.getInstance();
 
+        city = findViewById(R.id.cityName);
         weather = findViewById(R.id.weather);
         degree = findViewById(R.id.degrees);
 
-        mainPresenter.setWeather(weather.getText().toString());
-        mainPresenter.setDegree(degree.getText().toString());
+        model.setWeather(weather.getText().toString());
+        model.setDegree(degree.getText().toString());
 
         settings = findViewById(R.id.settings);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +47,29 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
 
-        weather.setText(mainPresenter.getWeather());
-        degree.setText(mainPresenter.getDegree());
+        city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(urlCity);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        degree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(urlDegree);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        weather.setText(model.getWeather());
+        degree.setText(model.getDegree());
+
+        Parcel parcel = (Parcel) getIntent().getExtras().getSerializable(Key.KEY_EXTRA);
+        city.setText(parcel.getCityName());
     }
 
 
@@ -98,9 +125,6 @@ public class WeatherActivity extends AppCompatActivity {
         if (Debug.DEBUG) {
             Log.d(Key.KEY, "onSaveInstanceState - WeatherActivity");
         }
-
-//        outState.putString(Key.KEY_DEGREE, degree.getText().toString());
-//        outState.putString(Key.KEY_WEATHER, weather.getText().toString());
     }
 
     @Override
@@ -110,8 +134,5 @@ public class WeatherActivity extends AppCompatActivity {
         if (Debug.DEBUG) {
             Log.d(Key.KEY, "onRestoreInstanceState - WeatherActivity");
         }
-
-//        degree.setText(savedInstanceState.getString(Key.KEY_DEGREE));
-//        weather.setText(savedInstanceState.getString(Key.KEY_WEATHER));
     }
 }

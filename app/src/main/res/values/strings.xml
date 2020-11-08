@@ -2,7 +2,6 @@
 
     <!--  for activity_main  -->
     <string name="app_name">MyApp</string>
-    <string name="city_name">Alexandria</string>
     <string name="date">Monday, 26th october</string>
     <string name="weather">Sunny</string>
 
@@ -24,5 +23,19 @@
     <string name="temperature_unit">Temperature Unit in °F</string>
     <string name="notification">Notification Bar</string>
     <string name="more_info">Show more info</string>
+
+    <string-array name="cities">
+        <item>@string/alexandria</item>
+        <item>@string/amman</item>
+        <item>@string/budapest</item>
+        <item>@string/damascus</item>
+        <item>@string/istanbul</item>
+        <item>@string/madrid</item>
+        <item>@string/moscow</item>
+        <item>@string/perth</item>
+        <item>@string/richmond</item>
+        <item>@string/rome</item>
+        <item>@string/shanghai</item>
+    </string-array>
 
 </resources>
