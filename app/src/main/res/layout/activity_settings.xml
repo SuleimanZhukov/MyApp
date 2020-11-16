@@ -8,48 +8,15 @@
     tools:context=".MenuActivity"
     android:background="@drawable/color_background">
 
-    <Switch
-        android:id="@+id/notification"
-        android:layout_width="@dimen/switch_width"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="left"
-        android:text="@string/notification"
-        android:textColor="@color/text_white"
-        app:layout_constraintBottom_toTopOf="@+id/theme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Switch
-        android:id="@+id/theme"
-        android:layout_width="@dimen/switch_width"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="@string/theme"
-        android:textColor="@color/text_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122" />
-
-    <Switch
-        android:id="@+id/temperature_unit"
-        android:layout_width="@dimen/switch_width"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:gravity="left"
-        android:text="@string/temperature_unit"
-        android:textColor="@color/text_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/theme"
-        app:layout_constraintVertical_bias="0.035" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment android:name="com.example.myapp.SettingsFragment"
+            android:id="@+id/fragment_settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_settings"/>
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,9 +19,7 @@ public class MenuActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Parcel parcel = new Parcel();
-                parcel.setCityName(button.getText().toString());
-
+                Parcel parcel = new Parcel(button.getText().toString());
                 Intent intent = new Intent(MenuActivity.this, WeatherActivity.class);
                 intent.putExtra(Key.KEY_EXTRA, parcel);
                 startActivity(intent);
