@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MenuFragment extends Fragment {
 
@@ -73,14 +76,33 @@ public class MenuFragment extends Fragment {
     }
 
     private void initList(View layout) {
-        final Button button;
-        button = layout.findViewById(R.id.amman);
-        button.setOnClickListener(new View.OnClickListener() {
+        String[] data = getResources().getStringArray(R.array.cities);
+        initRecyclerView(data, layout);
+    }
+
+    private MenuAdapter initRecyclerView(String[] dataSource, View layout) {
+        RecyclerView recyclerView = layout.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.separator));
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        MenuAdapter menuAdapter = new MenuAdapter(dataSource);
+        recyclerView.setAdapter(menuAdapter);
+
+        menuAdapter.setOnItemClickListener(new MenuAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                parcel = new Parcel(button.getText().toString());
+            public void itemClickListener(View view, int position) {
+                String selectedCity = getResources().getStringArray(R.array.cities)[position];
+                parcel = new Parcel(selectedCity);
                 showWeather(parcel);
             }
         });
+
+        return menuAdapter;
     }
 }

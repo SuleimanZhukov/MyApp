@@ -8,22 +8,9 @@ import android.widget.Button;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        button = findViewById(R.id.amman);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Parcel parcel = new Parcel(button.getText().toString());
-                Intent intent = new Intent(MenuActivity.this, WeatherActivity.class);
-                intent.putExtra(Key.KEY_EXTRA, parcel);
-                startActivity(intent);
-            }
-        });
     }
 }

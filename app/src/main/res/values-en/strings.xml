@@ -16,6 +16,14 @@
     <string name="rome">Rome</string>
     <string name="istanbul">Istanbul</string>
     <string name="madrid">Madrid</string>
+    <string name="beijing">Beijing</string>
+    <string name="riyadh">Riyadh</string>
+    <string name="vienna">Vienna</string>
+    <string name="baghdad">Baghdad</string>
+    <string name="aswan">Aswan</string>
+    <string name="milan">Milan</string>
+    <string name="athens">Athens</string>
+    <string name="barcelona">Barcelona</string>
     <string name="shanghai">Shanghai</string>
     <string name="richmond">Richmond</string>
 

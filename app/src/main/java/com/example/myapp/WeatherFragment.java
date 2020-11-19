@@ -13,6 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class WeatherFragment extends Fragment {
 
@@ -39,6 +44,7 @@ public class WeatherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initList(view);
+        dailyListWeather(view);
     }
 
     private void initList(View layout) {
@@ -85,5 +91,23 @@ public class WeatherFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    private void dailyListWeather(View layout) {
+        DataSource dataSource = new DataSource(getResources());
+        initRecyclerView(dataSource.build(), layout);
+    }
+
+    private WeatherAdapter initRecyclerView(DataSource dataSource, View layout) {
+        RecyclerView recyclerView = layout.findViewById(R.id.weather_daily_recycleview);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), recyclerView.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        WeatherAdapter weatherAdapter = new WeatherAdapter(dataSource);
+        recyclerView.setAdapter(weatherAdapter);
+
+        return weatherAdapter;
     }
 }
