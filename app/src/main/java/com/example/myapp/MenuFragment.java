@@ -98,7 +98,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void itemClickListener(View view, int position) {
                 String selectedCity = getResources().getStringArray(R.array.cities)[position];
-                parcel = new Parcel(selectedCity);
+//                parcel = new Parcel(selectedCity);
                 showWeather(parcel);
             }
         });
