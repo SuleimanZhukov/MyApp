@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.example.myapp.weather;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myapp.Data;
+import com.example.myapp.DataSource;
+import com.example.myapp.R;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
 

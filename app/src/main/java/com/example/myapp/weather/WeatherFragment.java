@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.example.myapp.weather;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,11 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.myapp.DataSource;
+import com.example.myapp.Key;
+import com.example.myapp.Parcel;
+import com.example.myapp.R;
+import com.example.myapp.URLs;
+import com.example.myapp.settings.SettingsActivity;
+import com.example.myapp.settings.SettingsFragment;
 
 public class WeatherFragment extends Fragment {
 
@@ -47,6 +52,14 @@ public class WeatherFragment extends Fragment {
         dailyListWeather(view);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Key.THEME_CODE) {
+            getActivity().recreate();
+        }
+    }
+
     private void initList(View layout) {
 //        Parcel parcel = getParcel();
         TextView cityName = layout.findViewById(R.id.cityName);
@@ -69,7 +82,7 @@ public class WeatherFragment extends Fragment {
                 } else {
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), SettingsActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent, Key.THEME_CODE);
                 }
             }
         });

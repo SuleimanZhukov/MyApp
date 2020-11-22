@@ -1,7 +1,8 @@
-package com.example.myapp;
+package com.example.myapp.menu;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myapp.Key;
+import com.example.myapp.Parcel;
+import com.example.myapp.R;
+import com.example.myapp.weather.WeatherActivity;
+import com.example.myapp.weather.WeatherFragment;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class MenuFragment extends Fragment {
 
@@ -30,7 +39,7 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initList(view);
+        init(view);
     }
 
     @Override
@@ -56,6 +65,14 @@ public class MenuFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Key.THEME_CODE) {
+            getActivity().recreate();
+        }
+    }
+
     private void showWeather(Parcel parcel) {
         if (isLandscape) {
             WeatherFragment weatherFragment = new WeatherFragment();
@@ -71,11 +88,24 @@ public class MenuFragment extends Fragment {
             Intent intent = new Intent();
             intent.setClass(getActivity(), WeatherActivity.class);
             intent.putExtra(Key.PARCEL, parcel);
-            startActivity(intent);
+            startActivityForResult(intent, Key.THEME_CODE);
         }
     }
 
-    private void initList(View layout) {
+
+    private void init(View layout) {
+        TextInputEditText searchEditText = layout.findViewById(R.id.search_edit_text);
+        searchEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    return;
+                }
+                TextView textView = (TextView) v;
+                validate(textView, getResources(), getString(R.string.error_msg));
+            }
+        });
+
         String[] data = getResources().getStringArray(R.array.cities);
         initRecyclerView(data, layout);
     }
@@ -98,11 +128,35 @@ public class MenuFragment extends Fragment {
             @Override
             public void itemClickListener(View view, int position) {
                 String selectedCity = getResources().getStringArray(R.array.cities)[position];
-//                parcel = new Parcel(selectedCity);
+
+                String snackText = String.format("You selected %s", selectedCity);
+                Snackbar.make(view, snackText, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
+                parcel = new Parcel(selectedCity);
                 showWeather(parcel);
             }
         });
 
         return menuAdapter;
+    }
+
+    private void validate(TextView textView, Resources resources, String msg) {
+        String value = textView.getText().toString();
+
+        for (int i = 0; i < resources.getStringArray(R.array.cities).length; i++) {
+            if (value.equals(resources.getStringArray(R.array.cities)[i])) {
+                hideError(textView);
+            } else {
+                showError(textView, msg);
+            }
+        }
+    }
+
+    private void hideError(TextView textView) {
+        textView.setError(null);
+    }
+
+    private void showError(TextView textView, String msg) {
+        textView.setError(msg);
     }
 }

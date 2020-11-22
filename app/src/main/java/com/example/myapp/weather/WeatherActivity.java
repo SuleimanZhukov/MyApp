@@ -1,10 +1,16 @@
-package com.example.myapp;
+package com.example.myapp.weather;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class WeatherActivity extends AppCompatActivity {
+import androidx.annotation.Nullable;
+
+import com.example.myapp.BaseActivity;
+import com.example.myapp.Key;
+import com.example.myapp.R;
+
+public class WeatherActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,4 +28,13 @@ public class WeatherActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_weather, weatherFragment);
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Key.THEME_CODE) {
+            recreate();
+        }
+    }
+
 }

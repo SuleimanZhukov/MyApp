@@ -33,4 +33,7 @@
     <string name="notification">Notification Bar</string>
     <string name="more_info">Show more info</string>
 
+    <string name="search_city">Search city</string>
+    <string name="error_msg">There\'s no city like this</string>
+
 </resources>

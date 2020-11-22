@@ -33,4 +33,7 @@
     <string name="notification">Уведомления</string>
     <string name="more_info">Показать больше информации</string>
 
+    <string name="search_city">Поиск города</string>
+    <string name="error_msg">Нету такого города</string>
+
 </resources>

@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity"
-    android:background="@drawable/color_background">
+    tools:context=".menu.MenuActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <fragment android:name="com.example.myapp.WeatherFragment"
+        <fragment android:name="com.example.myapp.weather.WeatherFragment"
             android:id="@+id/fragment_weather"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
