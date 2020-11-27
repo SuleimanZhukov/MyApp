@@ -7,6 +7,15 @@ public class Model {
 
     private String weather;
     private String degree;
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public void setWeather(String weather) {
         this.weather = weather;
