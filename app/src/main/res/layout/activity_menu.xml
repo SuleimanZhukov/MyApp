@@ -1,117 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity"
-    android:background="@drawable/color_background">
+    tools:context=".menu.MenuActivity">
 
-
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
+        <fragment android:name="com.example.myapp.menu.MenuFragment"
+            android:id="@+id/fragment_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_menu"/>
+    </FrameLayout>
 
-            <EditText
-                android:id="@+id/search"
-                android:layout_width="@dimen/search_bar_width"
-                android:layout_height="@dimen/search_bar_height"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Search city"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textColor="@color/text_white" />
 
-            <Button
-                android:id="@+id/amman"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/amman"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/alexandria"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/alexandria"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/budapest"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/budapest"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/damascus"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/damascus"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/istanbul"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/istanbul"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/madrid"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/madrid"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/moscow"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/moscow"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/perth"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/perth"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/richmond"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/richmond"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/rome"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/rome"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/shanghai"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/shanghai"
-                android:layout_gravity="center"/>
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/more_info"/>
-
-        </LinearLayout>
-
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

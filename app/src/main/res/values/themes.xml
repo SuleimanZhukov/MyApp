@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/text_white</item>
+    </style>
+    <style name="TinyText">
+        <item name="android:textColor">@color/design_default_color_on_primary</item>
+        <item name="android:textSize">5sp</item>
+    </style>
+    <style name="BigText">
+        <item name="android:textColor">@color/design_default_color_primary_dark</item>
+        <item name="android:textSize">42sp</item>
+    </style>
+
+    <style name="AppDarkTheme" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/text_white</item>
+    </style>
+</resources>

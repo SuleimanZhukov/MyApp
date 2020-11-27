@@ -25,7 +25,6 @@ public class Model {
     }
 
     private Model() {
-
     }
 
     public static Model getInstance() {
