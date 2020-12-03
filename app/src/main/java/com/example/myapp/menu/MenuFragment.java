@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapp.Key;
+import com.example.myapp.Constants;
+import com.example.myapp.Model;
 import com.example.myapp.Parcel;
 import com.example.myapp.R;
 import com.example.myapp.weather.WeatherActivity;
@@ -26,8 +28,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MenuFragment extends Fragment {
-
     private boolean isLandscape;
+    private Model model = Model.getInstance();
     private Parcel parcel;
 
     @Nullable
@@ -49,7 +51,7 @@ public class MenuFragment extends Fragment {
         isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
 
         if (savedInstanceState != null) {
-            parcel = (Parcel) savedInstanceState.getSerializable(Key.KEY_EXTRA);
+            parcel = (Parcel) savedInstanceState.getSerializable(Constants.KEY_EXTRA);
         } else {
             parcel = new Parcel("alexandria");
         }
@@ -61,37 +63,40 @@ public class MenuFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putSerializable(Key.KEY_EXTRA, parcel);
+        outState.putSerializable(Constants.KEY_EXTRA, parcel);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Key.THEME_CODE) {
+        if (requestCode == Constants.THEME_CODE) {
             getActivity().recreate();
         }
     }
 
     private void showWeather(Parcel parcel) {
         if (isLandscape) {
-            WeatherFragment weatherFragment = new WeatherFragment();
-            //Не получается
-//            if (weatherFragment == null || weatherFragment.getParcel().getCityName() != parcel.getCityName()) {
-//                weatherFragment = WeatherFragment.create(parcel);
-//            }
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.weather_container, weatherFragment);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
+            if (Constants.DEBUG) {
+                Log.d("MenuFragment", "ShowWeatherIsLandscape");
+            }
+            WeatherFragment weatherFragment = (WeatherFragment) getFragmentManager().findFragmentById(R.id.fragment_weather);
+            if (weatherFragment == null || !weatherFragment.getCurrentCity().equals(parcel.getCityName())) {
+                weatherFragment = WeatherFragment.create(parcel);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.weather_container, weatherFragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+            }
         } else {
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), WeatherActivity.class);
-            intent.putExtra(Key.PARCEL, parcel);
-            startActivityForResult(intent, Key.THEME_CODE);
+            if (Constants.DEBUG) {
+                Log.d("MenuFragment", "ShowWeatherELSE");
+            }
+            Intent intent = new Intent(getActivity(), WeatherActivity.class);
+            intent.putExtra(Constants.PARCEL, parcel);
+            startActivityForResult(intent, Constants.THEME_CODE);
         }
     }
-
 
     private void init(View layout) {
         TextInputEditText searchEditText = layout.findViewById(R.id.search_edit_text);
@@ -129,10 +134,12 @@ public class MenuFragment extends Fragment {
             public void itemClickListener(View view, int position) {
                 String selectedCity = getResources().getStringArray(R.array.cities)[position];
 
-                String snackText = String.format("You selected %s", selectedCity);
+                String snackText = String.format(getString(R.string.snackbar_format_string), selectedCity);
                 Snackbar.make(view, snackText, Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
                 parcel = new Parcel(selectedCity);
+
+                model.setCity(selectedCity);
                 showWeather(parcel);
             }
         });

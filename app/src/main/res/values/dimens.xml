@@ -13,5 +13,6 @@
     <!--  activity_settings  -->
     <dimen name="switch_width">300dp</dimen>
     <dimen name="menu_text_size">24dp</dimen>
+    <dimen name="medium_text_size">45sp</dimen>
 
 </resources>

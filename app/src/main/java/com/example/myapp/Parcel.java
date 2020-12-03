@@ -12,4 +12,6 @@ public class Parcel implements Serializable {
     public String getCityName() {
         return cityName;
     }
+
+
 }

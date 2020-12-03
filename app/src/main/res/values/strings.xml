@@ -34,6 +34,7 @@
 
     <string name="search_city">Search city</string>
     <string name="error_msg">There\'s no city like this</string>
+    <string name="snackbar_format_string">You selected %s</string>
 
 
 </resources>
